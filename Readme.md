@@ -11,9 +11,9 @@
   - `dat.covariance()`: samaple covarianace
 
 - Safe/Read data to h5:
-  - `dat.safe(filename)`
-  - `dat.read(filename)`
+    - `dat.safe(filename)`
+    - `dat.read(filename)`
 
 - Other:
-  - `dat.info` is a dictionary that can be used to store additional information like fit quality, fit range etc. 
+    - `dat.info` is a dictionary that can be used to store additional information like fit quality, fit range etc. 
      
