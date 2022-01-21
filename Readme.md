@@ -3,7 +3,7 @@
 - License: GPL v3
 - Author: Andreas Juettner, andreas.juettner@cern.ch, juettner@soton.ac.uk
 
-- Requires: numpy and h5py
+- Requires: [numpy](https://numpy.org) and [h5py](https://www.h5py.org)
 
 - Initiatlise: `dat = particle()`
 
