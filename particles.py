@@ -10,13 +10,13 @@
   this program. If not, see <http://www.gnu.org/licenses/>.
 
 
-  Author: Andreas Jüttner (Andreas.Juttner@cern.ch, juettner@soton.ac.uk)
+  Author: Andreas Juettner (Andreas.Juttner@cern.ch, juettner@soton.ac.uk)
 
 """
 
-import numpy as py
+import numpy as np
 import h5py
-class particles():
+class particle():
   """
    PARTICLES v0
   """
@@ -38,7 +38,7 @@ class particles():
    """
     compute bootstrap error
    """
-    return np.sqrt(np.diag(self.covariance()))
+   return np.sqrt(np.diag(self.covariance()))
   def covariance(self):
     """ 
      compute covariance matrix
