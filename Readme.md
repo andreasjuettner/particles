@@ -3,7 +3,7 @@
 - Initiatlise: `dat = particle()`
 
 - Assign samples: `dat.samples = <inputdata>`
-  where input data is a $N_{\rm boot} \times N_{\rm observable} array
+  where input data is a $N_{\rm boot} \times N_{\rm observable}$ array
 
 - Output: 
   - `dat.bs_val()`: sample mean
