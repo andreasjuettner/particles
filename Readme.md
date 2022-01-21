@@ -1,5 +1,8 @@
 # PARTICLES -- data structure for resampling analysis
 
+- License: GPL v3
+- Author: Andreas Juettner, andreas.juettner@cern.ch, juettner@soton.ac.uk
+
 - Initiatlise: `dat = particle()`
 
 - Assign samples: `dat.samples = <inputdata>`
