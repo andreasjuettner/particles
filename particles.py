@@ -60,7 +60,7 @@ class particle():
      if isinstance(self.info[item],list):
       if any(isinstance(i, list) for i in self.info[item]): # check if nested list
        for ii,l in enumerate(self.info[item]):
-        f.create_dataset('info_'+item+'_'+str(ii),data=l[ii])
+        f.create_dataset('info_'+item+'_'+str(ii),data=l)
      else:
       f.create_dataset('info_'+item,data=self.info[item])
     f.close
