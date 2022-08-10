@@ -48,9 +48,12 @@ class particle():
      compute covariance matrix
     """
     v   = self.bs_val()
+#    v   = self.central
     d   = np.array(self.samples)-v
     self.cov  = np.dot(d.T,d)/len(self.samples)
     return self.cov
+  def get_all_data(self):
+   return [self.bs_val(),self.bs_dval(),self.covariance(),self.samples]
   def make_samples(self):
    """
      Draw bootstrap samples. Assumes data to be NxT matrix,
@@ -82,7 +85,7 @@ class particle():
     f.create_dataset('central',data=self.central)
     f.create_dataset('bs_mean',data=self.bs_mean)
     if self.bare_data!=[]:
-     print "storing bare_data"
+#     print "storing bare_data"
      f.create_dataset('bare_data',data=self.bare_data)
     for item in self.info.keys():
      if isinstance(self.info[item],list):
