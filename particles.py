@@ -20,10 +20,11 @@ class particle():
   """
    PARTICLES v0
   """
-  def __init__(self,seed=1,Nboot=2000):
+  def __init__(self,seed=1,Nboot=1000):
    """
     initiatlisation
    """
+   self.cov_type= 'sample_mean'
    self.central	= 0.
    self.bs_mean	= 0.
    self.bs_mean	= 0.
@@ -47,8 +48,13 @@ class particle():
     """ 
      compute covariance matrix
     """
-    v   = self.bs_val()
-#    v   = self.central
+    if self.cov_type == 'sample_mean':
+     v   = self.bs_val()
+    elif self.cov_type == 'ensemble_mean':
+     v   = self.central
+    else:
+     print('particles.covariance(): unknown cov_type: %s'%self.cov_type)
+
     d   = np.array(self.samples)-v
     self.cov  = np.dot(d.T,d)/len(self.samples)
     return self.cov
@@ -93,6 +99,7 @@ class particle():
        for ii,l in enumerate(self.info[item]):
         f.create_dataset('info_'+item+'_'+str(ii),data=l)
       else:
+        #print(item,self.info[item])
         f.create_dataset('info_'+item+'_'+str(0),data=self.info[item])
      else:
       f.create_dataset('info_'+item,data=self.info[item])
