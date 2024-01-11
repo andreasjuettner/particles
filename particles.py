@@ -20,7 +20,9 @@ class particle():
   """
    PARTICLES v0
   """
-  def __init__(self,seed=1,Nboot=1000):
+  def __new__(cls, *args, **kwargs):
+    return super().__new__(cls)
+  def __init__(self,seed=1,Nboot=1000,bare_data=[]):
    """
     initiatlisation
    """
@@ -30,10 +32,17 @@ class particle():
    self.bs_mean	= 0.
    self.info	= {}
    self.samples	= []
-   self.bare_data= [] 
    self.bs_indices = []
-   self.N_bs   = Nboot
+   self.N_bs   	= Nboot
    self.bs_seed = seed
+   self.bare_data= bare_data
+   # if class initalised with list or array, create samples
+   if isinstance(bare_data, list):
+    if bare_data:
+     self.bare_data=np.array(self.bare_data)
+     self.make_samples()
+   elif isinstance(bare_data, np.ndarray):
+     self.make_samples()
   def bs_val(self):
    """
     compute bootstrap average
@@ -72,8 +81,11 @@ class particle():
     np.random.seed(self.bs_seed)
     # draw BS indices
     self.bs_indices = np.random.randint(0,high=N,size=(N,K)).T
+   # I checked -- apply_along_axis takes about the same time as list comprehension 
+   # (commented out below)
    fmean = lambda bs: np.mean(self.bare_data[bs,:],0)
-   self.samples = np.apply_along_axis(fmean,1,self.bs_indices)#[np.mean(data[:,t][self.bs_indices],axis=0) for t in range(TT)]).T
+   self.samples = np.apply_along_axis(fmean,1,self.bs_indices)
+#   tmp = np.array([np.mean(self.bare_data[bs,:],0) for bs in self.bs_indices])
    # clean up results after new data loaded
    self.cov = np.array([])
    self.bs_mean = []
