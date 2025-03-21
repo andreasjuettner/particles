@@ -155,7 +155,10 @@ class particle():
     import jn
     return jn.disperr(self.bs_val(),self.bs_dval())
    except:
-    return('')
+    print('can\'t print nice')
+    print(self.bs_val(),self.bs_dval())
+    return
+    
   def covariance(self):
     """ 
      compute covariance matrix
@@ -189,6 +192,7 @@ class particle():
    #fmean2 = lambda bs: np.mean(self.bare_data[bs,:],0)
    #self.samples = np.apply_along_axis(fmean2,1,self.bs_indices)
    #print(self.samples)
+   self.central = np.mean(self.bare_data,0)
    self.samples = my_apply_along_axis(fmean,self.bs_indices,self.bare_data,Nproc=self.Nproc,parallel=self.parallel)
    #print(self.samples)
    #exit()
